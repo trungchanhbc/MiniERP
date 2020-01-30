@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MiniERP.ViewModel
 {
-    class LoginViewModel
+    class LoginViewModel : BaseViewModel
     {
+
     }
 }

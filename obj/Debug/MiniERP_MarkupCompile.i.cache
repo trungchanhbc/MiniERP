@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Development\Projects\MiniERP\App.xaml
-1-898155335
+229632705
 
-8-733467863
+10842129179
 151795527023
-View\LoginWindow.xaml;
+ResourceXAML\MainResource.xaml;View\LoginWindow.xaml;
 
-False
+True
 
