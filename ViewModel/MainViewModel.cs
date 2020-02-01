@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MiniERP.ViewModel
 {
-    class MainViewModel
+    public class MainViewModel
     {
+
+        public MainViewModel()
+        {
+            //View.LoginWindow loginWin = new View.LoginWindow();
+            //loginWin.ShowDialog();
+        }
     }
 }

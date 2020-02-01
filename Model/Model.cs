@@ -22,4 +22,16 @@ namespace MiniERP.Model
             set { _password = value; }
         }
     }
+
+    public class CustomsDeclaration
+    {
+        private string _code;
+        private DateTime _openDate;
+        private DateTime _goodsArivalDate;
+        private DateTime _inputDate;
+
+        public string Code { get; set; }
+
+    }
+
 }

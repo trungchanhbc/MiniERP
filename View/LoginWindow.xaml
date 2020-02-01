@@ -4,13 +4,64 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiniERP.View"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="300" Width="350">
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+
+        Title="Login" Height="400" Width="350"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="SelectionChanged">
+                <i:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+    
     <Grid>
         <StackPanel>
-             <materialDesign:Card>
-                
+            <Image Width="100" Height="100" Source="/Resource/User_Logo_128px.png"></Image>
+             <materialDesign:Card Width="300" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="Grid">
+                            <Setter Property="Margin" Value="15,15,15,0"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <TextBox materialDesign:HintAssist.Hint="User Name:" 
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <PasswordBox x:Name="FloatingPasswordBox"
+                                materialDesign:HintAssist.Hint="Password:" 
+                                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Content="Submit" Margin="5"></Button>
+                        <Button Grid.Column="1" Content="Cancel" Margin="5" Background="OrangeRed"></Button>
+                    </Grid>
+                    
+                </Grid>
+                 
             </materialDesign:Card>
         </StackPanel>
     </Grid>
