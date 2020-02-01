@@ -4,8 +4,17 @@ CREATE 	DATABASE 		MiniERP
     
 USE MiniERP;
 
+CREATE TABLE Account (
+    ID INT AUTO_INCREMENT NOT NULL,
+    UserName VARCHAR(50) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Role INT,
+    UNIQUE KEY (ID),
+    PRIMARY KEY (ID)
+);
+
 CREATE TABLE Supplier (
-    Id INT NOT NULL,
+    ID INT NOT NULL,
     Name VARCHAR(200) NOT NULL,
     Address TEXT,
     Contractor VARCHAR(100),
@@ -16,10 +25,10 @@ CREATE TABLE Supplier (
 );
 
 CREATE TABLE Unit (
-    Id INT NOT NULL AUTO_INCREMENT,
+    ID INT NOT NULL AUTO_INCREMENT,
     Name VARCHAR(45) NOT NULL,
-    UNIQUE KEY (Id),
-    PRIMARY KEY (Id)
+    UNIQUE KEY (ID),
+    PRIMARY KEY (ID)
 );
 
 CREATE TABLE CustomsDeclaration (
@@ -34,11 +43,11 @@ CREATE TABLE CustomsDeclaration (
 CREATE TABLE RawMaterialInfo (
     Code VARCHAR(30) NOT NULL,
     Name VARCHAR(200) NOT NULL,
-    UnitId INT NOT NULL,
+    UnitID INT NOT NULL,
     UNIQUE KEY (Code),
     PRIMARY KEY (Code),
-    FOREIGN KEY (UnitId)
-        REFERENCES Unit (Id)
+    FOREIGN KEY (UnitID)
+        REFERENCES Unit (ID)
 );
 
 CREATE TABLE RawMaterial (
@@ -64,12 +73,12 @@ CREATE TABLE Formula (
     OriginalConsumed DECIMAL(20 , 10 ) NOT NULL,
     LossRate DECIMAL(10 , 10 ) NOT NULL,
     ActualConsumed DECIMAL(20 , 10 ) NOT NULL,
-    SupplierId INT,
+    SupplierID INT,
     PRIMARY KEY (Code),
     FOREIGN KEY (RawMaterialCode)
         REFERENCES RawMaterialInfo (Code),
-    FOREIGN KEY (SupplierId)
-        REFERENCES Supplier (Id)
+    FOREIGN KEY (SupplierID)
+        REFERENCES Supplier (ID)
 );
 
 CREATE TABLE FinishGood (
@@ -78,7 +87,7 @@ CREATE TABLE FinishGood (
     HSCode VARCHAR(30),
     FormulaCode VARCHAR(30) NOT NULL,
     Quantity DECIMAL(20 , 10 ) NOT NULL,
-    CustomerName VARCHAR(200),
+    Customer VARCHAR(200),
     Po VARCHAR(100),
     Invoice VARCHAR(200),
     Date DATE,
