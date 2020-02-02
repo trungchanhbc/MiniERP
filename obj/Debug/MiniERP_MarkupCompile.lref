@@ -1,7 +1,10 @@
 ﻿
 FE:\Development\Projects\MiniERP\App.xaml;;
 FE:\Development\Projects\MiniERP\ResourceXAML\MainResource.xaml;;
-FE:\Development\Projects\MiniERP\View\BoMWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\RawMaterialInputWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\BoMMainWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\LoginWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\MainWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\RawMaterialListWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\TransferDataWindow.xaml;;
 

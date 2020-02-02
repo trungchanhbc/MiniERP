@@ -12,7 +12,7 @@ namespace MiniERP.Model
         public string RMCode { get; set; }
         public string RMName { get; set; }
         public string Unit { get; set; }
-        public decimal BoM { get; set; }
+        public decimal BoMQty { get; set; }
         public decimal Rate { get; set; }
         public decimal BoMTotal { get; set; }
         public string Supplier { get; set; }

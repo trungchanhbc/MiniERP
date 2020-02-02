@@ -73,6 +73,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Language\Lang_en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang_en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Language\Lang_vi-VN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang_vi-VN.resx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\OldDBModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -80,8 +90,8 @@
     <Compile Include="ViewModel\DataProvider.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="View\BoMInputWindow.xaml.cs">
-      <DependentUpon>BoMInputWindow.xaml</DependentUpon>
+    <Compile Include="View\RawMaterialInputWindow.xaml.cs">
+      <DependentUpon>RawMaterialInputWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BoMMainWindow.xaml.cs">
       <DependentUpon>BoMMainWindow.xaml</DependentUpon>
@@ -91,6 +101,9 @@
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RawMaterialListWindow.xaml.cs">
+      <DependentUpon>RawMaterialListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TransferDataWindow.xaml.cs">
       <DependentUpon>TransferDataWindow.xaml</DependentUpon>
@@ -110,10 +123,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Language\Lang_en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang_en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Language\Lang_vi-VN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang_vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -128,7 +150,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BoMInputWindow.xaml">
+    <Page Include="View\RawMaterialInputWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RawMaterialListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

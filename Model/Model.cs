@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MiniERP.Model
 {
-    public class User
+    /// <summary>
+    /// Database
+    /// </summary>
+    public class Account
     {
         private string _username;
         public string UserName
@@ -248,8 +251,8 @@ namespace MiniERP.Model
             get { return _phone; }
             set { _phone = value; }
         }
-        public string Email 
-        { 
+        public string Email
+        {
             get { return _email; }
             set { _email = value; }
         }
@@ -263,7 +266,7 @@ namespace MiniERP.Model
         private DateTime _goodsArrivalDate;
         private DateTime _inputDate;
 
-        public string Code 
+        public string Code
         {
             get { return _code; }
             set { _code = value; }
@@ -285,8 +288,21 @@ namespace MiniERP.Model
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    
+    public class Language
+    {
+        private int _id;
+        
+        public int ID
+        {
+            get { return _id; }
+            set { _id = value;}
+        }
 
-    /*
-     * OLD ACCESS DATABASE
-     */
+
+    }
+
 }

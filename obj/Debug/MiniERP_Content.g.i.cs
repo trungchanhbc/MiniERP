@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/030-kg.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database/database.accdb")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database/database_v2.accdb")]
 
 
