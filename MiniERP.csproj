@@ -90,6 +90,12 @@
     <Compile Include="ViewModel\DataProvider.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="View\FormulaList.xaml.cs">
+      <DependentUpon>FormulaList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormulaWindow.xaml.cs">
+      <DependentUpon>FormulaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RawMaterialInputWindow.xaml.cs">
       <DependentUpon>RawMaterialInputWindow.xaml</DependentUpon>
     </Compile>
@@ -147,6 +153,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ResourceXAML\MainResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FormulaList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FormulaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

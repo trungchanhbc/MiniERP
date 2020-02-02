@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Development\Projects\MiniERP\App.xaml
-71648990164
+9-268565055
 21189158883
-191911893177
+211829925936
 17-1623556111
-ResourceXAML\MainResource.xaml;View\RawMaterialInputWindow.xaml;View\BoMMainWindow.xaml;View\LoginWindow.xaml;View\MainWindow.xaml;View\RawMaterialListWindow.xaml;View\TransferDataWindow.xaml;
+ResourceXAML\MainResource.xaml;View\FormulaList.xaml;View\FormulaWindow.xaml;View\RawMaterialInputWindow.xaml;View\BoMMainWindow.xaml;View\LoginWindow.xaml;View\MainWindow.xaml;View\RawMaterialListWindow.xaml;View\TransferDataWindow.xaml;
 
 False
 

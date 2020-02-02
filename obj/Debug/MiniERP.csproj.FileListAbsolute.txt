@@ -39,4 +39,7 @@ E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialInputWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialInputWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialListWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialListWindow.baml
-E:\Development\Projects\MiniERP\obj\Debug\MiniERP.csprojAssemblyReference.cache
+E:\Development\Projects\MiniERP\obj\Debug\View\FormulaWindow.g.cs
+E:\Development\Projects\MiniERP\obj\Debug\View\FormulaWindow.baml
+E:\Development\Projects\MiniERP\obj\Debug\View\FormulaList.g.cs
+E:\Development\Projects\MiniERP\obj\Debug\View\FormulaList.baml
