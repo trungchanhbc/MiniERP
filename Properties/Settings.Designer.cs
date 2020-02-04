@@ -25,13 +25,13 @@ namespace MiniERP.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
-        public string LanguageCode {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Language {
             get {
-                return ((string)(this["LanguageCode"]));
+                return ((int)(this["Language"]));
             }
             set {
-                this["LanguageCode"] = value;
+                this["Language"] = value;
             }
         }
     }

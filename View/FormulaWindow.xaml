@@ -17,17 +17,14 @@
         
         WindowStartupLocation="CenterScreen"
         
-        Title="Formula Input" Height="450" Width="800">
+        Title="Formula List" Height="550" Width="850">
     <Grid>
         <Grid.Resources>
             <Style TargetType="materialDesign:Card">
-                <Setter Property="Margin" Value="10" />
-            </Style>
-            <Style TargetType="Grid">
-                <Setter Property="Margin" Value="5" />
+                <Setter Property="Margin" Value="10"/>
             </Style>
         </Grid.Resources>
-
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -36,36 +33,44 @@
         <materialDesign:Card Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
-                <TextBox Grid.Column="0" Width="200" HorizontalAlignment="Left"
-                         materialDesign:HintAssist.Hint="Formula Code"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Margin="5"
-                            Width="100">Save</Button>
-                    <Button Margin="5"
-                            Width="100">New</Button>
-                </StackPanel>
 
+                <ComboBox Margin="5" Grid.Column="0"
+                          materialDesign:HintAssist.Hint="Search by:"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBoxItem>
+                        Formula Code
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Raw Material Code
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Raw Material Name
+                    </ComboBoxItem>
+                </ComboBox>
+                <TextBox Margin="5" Grid.Column="1"
+                         materialDesign:HintAssist.Hint="Search text"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
             </Grid>
         </materialDesign:Card>
         
-        <materialDesign:Card Grid.Row="1" Margin="10,0,10,10">
-            <DataGrid AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Raw Material Code"/>
-                    <DataGridTextColumn Header="Raw Material Name"/>
-                    <DataGridTextColumn Header="Unit"/>
-                    <DataGridTextColumn Header="Original Consumed"/>
-                    <DataGridTextColumn Header="Loss Rate"/>
-                    <DataGridTextColumn Header="Actual Consumed"/>
-                    <DataGridTextColumn Header="Supplier"/>
-                </DataGrid.Columns>
-            </DataGrid>
+        <materialDesign:Card Grid.Row="1">
+            <ListView>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Raw Material Code"/>
+                        <GridViewColumn Header="Raw Material Name"/>
+                        <GridViewColumn Header="Unit"/>
+                        <GridViewColumn Header="Original Consumed"/>
+                        <GridViewColumn Header="Loss Rate"/>
+                        <GridViewColumn Header="Actual Consumed"/>
+                        <GridViewColumn Header="Supplier"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </materialDesign:Card>
+        
     </Grid>
 </Window>

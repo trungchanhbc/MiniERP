@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace MiniERP.View
 {
     /// <summary>
-    /// Interaction logic for FormulaWindow.xaml
+    /// Interaction logic for FormulaList.xaml
     /// </summary>
     public partial class FormulaWindow : Window
     {

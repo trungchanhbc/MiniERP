@@ -129,8 +129,8 @@ namespace MiniERP.Model
         }
         public string Invoice
         {
-            get { return _po; }
-            set { _po = value; }
+            get { return _invoice; }
+            set { _invoice = value; }
         }
         public DateTime Date
         {
@@ -289,20 +289,11 @@ namespace MiniERP.Model
     }
 
     /// <summary>
-    /// 
+    /// Language
     /// </summary>
-    
-    public class Language
-    {
-        private int _id;
-        
-        public int ID
-        {
-            get { return _id; }
-            set { _id = value;}
-        }
-
-
-    }
-
+    //public enum Language
+    //{
+    //    English,
+    //    Vietnamese
+    //}
 }

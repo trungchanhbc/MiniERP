@@ -17,9 +17,9 @@ namespace MiniERP.View
     /// <summary>
     /// Interaction logic for BoMInputWindow.xaml
     /// </summary>
-    public partial class BoMInputWindow : Window
+    public partial class RawMaterialInputWindow : Window
     {
-        public BoMInputWindow()
+        public RawMaterialInputWindow()
         {
             InitializeComponent();
         }

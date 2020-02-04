@@ -36,6 +36,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=1.2.2.920, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.1.2.2\lib\net45\MaterialDesignColors.dll</HintPath>
@@ -73,16 +77,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Language\Lang_en-US.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang_en-US.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Language\Lang_vi-VN.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Lang_vi-VN.resx</DependentUpon>
-    </Compile>
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\OldDBModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -90,11 +84,18 @@
     <Compile Include="ViewModel\DataProvider.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="View\FormulaList.xaml.cs">
-      <DependentUpon>FormulaList.xaml</DependentUpon>
+    <Compile Include="ViewModel\RawMaterialViewModel.cs" />
+    <Compile Include="View\FinishGoodAddWindow.xaml.cs">
+      <DependentUpon>FinishGoodAddWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FinishGoodWindow.xaml.cs">
+      <DependentUpon>FinishGoodWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FormulaWindow.xaml.cs">
       <DependentUpon>FormulaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormulaAddWindow.xaml.cs">
+      <DependentUpon>FormulaAddWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RawMaterialInputWindow.xaml.cs">
       <DependentUpon>RawMaterialInputWindow.xaml</DependentUpon>
@@ -108,8 +109,8 @@
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RawMaterialListWindow.xaml.cs">
-      <DependentUpon>RawMaterialListWindow.xaml</DependentUpon>
+    <Compile Include="View\RawMaterialWindow.xaml.cs">
+      <DependentUpon>RawMaterialWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TransferDataWindow.xaml.cs">
       <DependentUpon>TransferDataWindow.xaml</DependentUpon>
@@ -129,19 +130,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Language\Lang_en-US.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang_en-US.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Language\Lang_vi-VN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang_vi-VN.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Page Include="ResourceXAML\MainResource-VN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResourceXAML\MainResource-EN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -149,18 +150,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\User_Logo_128px.png" />
+    <Resource Include="Resource\Icons\Login.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ResourceXAML\MainResource.xaml">
+    <Page Include="View\FinishGoodAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\FormulaList.xaml">
+    <Page Include="View\FinishGoodWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FormulaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FormulaAddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,7 +185,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RawMaterialListWindow.xaml">
+    <Page Include="View\RawMaterialWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,11 +194,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resource\Bill_of_Material.png" />
-  </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resource\Icons\Report.png" />
+    <Resource Include="Resource\Icons\FinishGood.png" />
+    <Resource Include="Resource\Icons\RawMaterial.png" />
+    <Resource Include="Resource\Icons\Formula.png" />
     <Content Include="Database\Database.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

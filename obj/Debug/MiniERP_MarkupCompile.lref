@@ -1,12 +1,15 @@
 ﻿
 FE:\Development\Projects\MiniERP\App.xaml;;
-FE:\Development\Projects\MiniERP\ResourceXAML\MainResource.xaml;;
-FE:\Development\Projects\MiniERP\View\FormulaList.xaml;;
+FE:\Development\Projects\MiniERP\ResourceXAML\MainResource-VN.xaml;;
+FE:\Development\Projects\MiniERP\ResourceXAML\MainResource-EN.xaml;;
+FE:\Development\Projects\MiniERP\View\FinishGoodAddWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\FinishGoodWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\FormulaWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\FormulaAddWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\RawMaterialInputWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\BoMMainWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\LoginWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\MainWindow.xaml;;
-FE:\Development\Projects\MiniERP\View\RawMaterialListWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\RawMaterialWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\TransferDataWindow.xaml;;
 
