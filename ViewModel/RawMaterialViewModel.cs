@@ -15,7 +15,7 @@ namespace MiniERP.ViewModel
         {
             OpenRawMaterialInputCommand = new RelayCommand<object>((p) => { return true; }, (p) => 
             {
-                View.RawMaterialInputWindow rawMaterialInputWindow = new View.RawMaterialInputWindow();
+                View.RawMaterialAddItemWindow rawMaterialInputWindow = new View.RawMaterialAddItemWindow();
                 rawMaterialInputWindow.ShowDialog();
             });
         }

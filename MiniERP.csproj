@@ -37,10 +37,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=3.2.1.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>packages\BCrypt.Net-Next.3.2.1\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.2.920, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MaterialDesignColors.1.2.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -51,7 +53,29 @@
       <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -80,13 +104,15 @@
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\OldDBModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\BoMViewModel.cs" />
     <Compile Include="ViewModel\DataProvider.cs" />
+    <Compile Include="ViewModel\FinishGoodViewModel.cs" />
+    <Compile Include="ViewModel\FormulaViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RawMaterialViewModel.cs" />
-    <Compile Include="View\FinishGoodAddWindow.xaml.cs">
-      <DependentUpon>FinishGoodAddWindow.xaml</DependentUpon>
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="View\FinishGoodAddItemWindow.xaml.cs">
+      <DependentUpon>FinishGoodAddItemWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FinishGoodWindow.xaml.cs">
       <DependentUpon>FinishGoodWindow.xaml</DependentUpon>
@@ -97,11 +123,8 @@
     <Compile Include="View\FormulaAddWindow.xaml.cs">
       <DependentUpon>FormulaAddWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RawMaterialInputWindow.xaml.cs">
-      <DependentUpon>RawMaterialInputWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\BoMMainWindow.xaml.cs">
-      <DependentUpon>BoMMainWindow.xaml</DependentUpon>
+    <Compile Include="View\RawMaterialAddItemWindow.xaml.cs">
+      <DependentUpon>RawMaterialAddItemWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -111,6 +134,9 @@
     </Compile>
     <Compile Include="View\RawMaterialWindow.xaml.cs">
       <DependentUpon>RawMaterialWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TransferDataWindow.xaml.cs">
       <DependentUpon>TransferDataWindow.xaml</DependentUpon>
@@ -135,6 +161,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Page Include="ResourceXAML\MainResource-FR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceXAML\MainResource-VN.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -153,7 +183,7 @@
     <Resource Include="Resource\Icons\Login.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\FinishGoodAddWindow.xaml">
+    <Page Include="View\FinishGoodAddItemWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,11 +199,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RawMaterialInputWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\BoMMainWindow.xaml">
+    <Page Include="View\RawMaterialAddItemWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,6 +215,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\TransferDataWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +226,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Security\RegistryFile.xml" />
+    <Resource Include="Logo.ico" />
     <Resource Include="Resource\Icons\Report.png" />
     <Resource Include="Resource\Icons\FinishGood.png" />
     <Resource Include="Resource\Icons\RawMaterial.png" />

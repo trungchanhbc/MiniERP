@@ -1,17 +1,16 @@
-﻿
+﻿E:\Development\Projects\MiniERP\obj\Release\GeneratedInternalTypeHelper.g.cs
 FE:\Development\Projects\MiniERP\App.xaml;;
-FE:\Development\Projects\MiniERP\Resource\Language\Language.en-US.xaml;;
-FE:\Development\Projects\MiniERP\Resource\Language\Language.fr-FR.xaml;;
-FE:\Development\Projects\MiniERP\Resource\Language\Language.vi-VN.xaml;;
-FE:\Development\Projects\MiniERP\ResourceXAML\MainResource.xaml;;
-FE:\Development\Projects\MiniERP\View\FinishGoodAddWindow.xaml;;
+FE:\Development\Projects\MiniERP\ResourceXAML\MainResource-FR.xaml;;
+FE:\Development\Projects\MiniERP\ResourceXAML\MainResource-VN.xaml;;
+FE:\Development\Projects\MiniERP\ResourceXAML\MainResource-EN.xaml;;
+FE:\Development\Projects\MiniERP\View\FinishGoodAddItemWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\FinishGoodWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\FormulaWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\FormulaAddWindow.xaml;;
-FE:\Development\Projects\MiniERP\View\RawMaterialInputWindow.xaml;;
-FE:\Development\Projects\MiniERP\View\BoMMainWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\RawMaterialAddItemWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\LoginWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\MainWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\RawMaterialWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\SettingsWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\TransferDataWindow.xaml;;
 

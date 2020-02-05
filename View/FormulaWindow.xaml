@@ -15,21 +15,25 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         
+        DataContext="{StaticResource FormulaVM}"
+        
         WindowStartupLocation="CenterScreen"
         
-        Title="Formula List" Height="550" Width="850">
+        Title="{DynamicResource Formula_Title}" Height="550" Width="850">
     <Grid>
         <Grid.Resources>
             <Style TargetType="materialDesign:Card">
-                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Margin" Value="10,10,10,0"/>
             </Style>
         </Grid.Resources>
         
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Search Bar -->
         <materialDesign:Card Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -38,7 +42,7 @@
                 </Grid.ColumnDefinitions>
 
                 <ComboBox Margin="5" Grid.Column="0"
-                          materialDesign:HintAssist.Hint="Search by:"
+                          materialDesign:HintAssist.Hint="{DynamicResource SearchBy}"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <ComboBoxItem>
                         Formula Code
@@ -51,22 +55,36 @@
                     </ComboBoxItem>
                 </ComboBox>
                 <TextBox Margin="5" Grid.Column="1"
-                         materialDesign:HintAssist.Hint="Search text"
+                         materialDesign:HintAssist.Hint="{DynamicResource SearchText}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
             </Grid>
         </materialDesign:Card>
         
+        <!-- Buttons -->
         <materialDesign:Card Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding FormulaAddItemCommand}" 
+                        Margin="5" Width="100" Content="{DynamicResource Add}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"/>
+                <Button Margin="5" Width="100" Content="{DynamicResource Edit}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"/>
+                <Button Margin="5" Width="100" Content="{DynamicResource Remove}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"/>
+            </StackPanel>
+        </materialDesign:Card>
+        
+        <!-- List View -->
+        <materialDesign:Card Grid.Row="2" Margin="10">
             <ListView>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Raw Material Code"/>
-                        <GridViewColumn Header="Raw Material Name"/>
-                        <GridViewColumn Header="Unit"/>
-                        <GridViewColumn Header="Original Consumed"/>
-                        <GridViewColumn Header="Loss Rate"/>
-                        <GridViewColumn Header="Actual Consumed"/>
-                        <GridViewColumn Header="Supplier"/>
+                        <GridViewColumn Header="{DynamicResource RawMaterial_Code}"/>
+                        <GridViewColumn Header="{DynamicResource RawMaterial_Name}"/>
+                        <GridViewColumn Header="{DynamicResource Unit}"/>
+                        <GridViewColumn Header="{DynamicResource Formula_OriginalConsumed}"/>
+                        <GridViewColumn Header="{DynamicResource Formula_LossRate}"/>
+                        <GridViewColumn Header="{DynamicResource Formula_ActualConsumed}"/>
+                        <GridViewColumn Header="{DynamicResource Supplier}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

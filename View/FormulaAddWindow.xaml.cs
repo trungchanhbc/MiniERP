@@ -17,9 +17,9 @@ namespace MiniERP.View
     /// <summary>
     /// Interaction logic for FormulaWindow.xaml
     /// </summary>
-    public partial class FormulaAddWindow : Window
+    public partial class FormulaAddItemWindow : Window
     {
-        public FormulaAddWindow()
+        public FormulaAddItemWindow()
         {
             InitializeComponent();
         }

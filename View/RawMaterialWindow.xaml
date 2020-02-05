@@ -19,7 +19,7 @@
         
         WindowStartupLocation="CenterScreen"
         
-        Title="{StaticResource RawMaterial_Title}" Height="650" Width="1550">
+        Title="{DynamicResource RawMaterial_Title}" Height="650" Width="1550">
     <Grid>
         <Grid.Resources>
             <Style TargetType="materialDesign:Card">
@@ -28,6 +28,7 @@
         </Grid.Resources>
         
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -42,7 +43,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <ComboBox x:Name="cboRMSearch" Margin="5" Grid.Column="0"
-                          materialDesign:HintAssist.Hint="{StaticResource RawMaterial_SearchBy}"
+                          materialDesign:HintAssist.Hint="{DynamicResource SearchBy}"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <ComboBoxItem>
                         Input Date
@@ -60,42 +61,45 @@
                         ...
                     </ComboBoxItem>
                 </ComboBox>
-
                 <TextBox x:Name="txbRMSearch" Margin="5" Grid.Column="1"
-                         materialDesign:HintAssist.Hint="{StaticResource RawMaterial_SearchText}"
+                         materialDesign:HintAssist.Hint="{DynamicResource SearchText}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <StackPanel Orientation="Horizontal" Grid.Column="2">
-                    <Button Command="{Binding OpenRawMaterialInputCommand}"
-                            Margin="5" Width="100"
-                            Style="{StaticResource MaterialDesignRaisedButton}" Content="{StaticResource Add}"/>
-                    <Button Margin="5" Width="100"
-                            Style="{StaticResource MaterialDesignRaisedButton}" Content="{StaticResource Edit}"/>
-                    <Button Margin="5" Width="100"
-                            Style="{StaticResource MaterialDesignRaisedButton}" Content="{StaticResource Remove}"/>
-                </StackPanel>
             </Grid>
         </materialDesign:Card>
         
-        <!-- Raw Material DataGrid -->
+        <!-- Buttons -->
         <materialDesign:Card Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Grid.Column="2">
+                <Button Command="{Binding OpenRawMaterialInputCommand}"
+                            Margin="5" Width="100"
+                            Style="{StaticResource MaterialDesignRaisedButton}" Content="{DynamicResource Add}"/>
+                <Button Margin="5" Width="100"
+                            Style="{StaticResource MaterialDesignRaisedButton}" Content="{DynamicResource Edit}"/>
+                <Button Margin="5" Width="100"
+                            Style="{StaticResource MaterialDesignRaisedButton}" Content="{DynamicResource Remove}"/>
+            </StackPanel>
+        </materialDesign:Card>
+        
+        <!-- Raw Material DataGrid -->
+        <materialDesign:Card Grid.Row="2" Margin="10,0,10,10">
             <ListView>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="{StaticResource RawMaterial_InputDate}" />
-                        <GridViewColumn Header="{StaticResource RawMaterial_CustomsDeclarationNo.}" />
-                        <GridViewColumn Header="{StaticResource RawMaterial_OpenDate}" />
-                        <GridViewColumn Header="{StaticResource RawMaterial_GoodsArrialDate}" />
-                        <GridViewColumn Header="{StaticResource RawMaterial_Code}" />
-                        <GridViewColumn Header="{StaticResource RawMaterial_Name}" />
-                        <GridViewColumn Header="{StaticResource RawMaterial_HSCode}" />
-                        <GridViewColumn Header="{StaticResource Price}" />
-                        <GridViewColumn Header="{StaticResource ExchangeRate}" />
-                        <GridViewColumn Header="{StaticResource TaxRate}" />
-                        <GridViewColumn Header="{StaticResource Tax}" />
-                        <GridViewColumn Header="{StaticResource ExportPrice}" />
-                        <GridViewColumn Header="{StaticResource Input}" />
-                        <GridViewColumn Header="{StaticResource Output}" />
-                        <GridViewColumn Header="{StaticResource Stock}" />
+                        <GridViewColumn Header="{DynamicResource InputDate}" />
+                        <GridViewColumn Header="{DynamicResource RawMaterial_CustomsDeclarationNo.}" />
+                        <GridViewColumn Header="{DynamicResource RawMaterial_OpenDate}" />
+                        <GridViewColumn Header="{DynamicResource RawMaterial_GoodsArrialDate}" />
+                        <GridViewColumn Header="{DynamicResource RawMaterial_Code}" />
+                        <GridViewColumn Header="{DynamicResource RawMaterial_Name}" />
+                        <GridViewColumn Header="{DynamicResource HSCode}" />
+                        <GridViewColumn Header="{DynamicResource Price}" />
+                        <GridViewColumn Header="{DynamicResource ExchangeRate}" />
+                        <GridViewColumn Header="{DynamicResource TaxRate}" />
+                        <GridViewColumn Header="{DynamicResource Tax}" />
+                        <GridViewColumn Header="{DynamicResource ExportPrice}" />
+                        <GridViewColumn Header="{DynamicResource Input}" />
+                        <GridViewColumn Header="{DynamicResource Output}" />
+                        <GridViewColumn Header="{DynamicResource Stock}" />
                     </GridView>
                 </ListView.View>
             </ListView>

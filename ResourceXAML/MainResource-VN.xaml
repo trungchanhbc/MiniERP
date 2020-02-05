@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:viewmodel="clr-namespace:MiniERP.ViewModel"
-                    xmlns:local="clr-namespace:MiniERP.Language">
+                    xmlns:viewmodel="clr-namespace:MiniERP.ViewModel">
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
@@ -14,8 +13,11 @@
     <viewmodel:MainViewModel x:Key="MainVM"/>
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
     <viewmodel:RawMaterialViewModel x:Key="RawMaterialVM"/>
-
-    <!-- Common Controls-->
+    <viewmodel:SettingsViewModel x:Key="SettingsVM"/>
+    <viewmodel:FinishGoodViewModel x:Key="FinishGoodVM" />
+    <viewmodel:FormulaViewModel x:Key="FormulaVM" />
+    
+    <!-- Common Strings-->
     <system:String x:Key="Add">Thêm</system:String>
     <system:String x:Key="Edit">Sửa</system:String>
     <system:String x:Key="Remove">Xóa</system:String>
@@ -23,16 +25,30 @@
     <system:String x:Key="Submit">Đăng Nhập</system:String>
     <system:String x:Key="Exit">Thoát</system:String>
     <system:String x:Key="Clear">Làm Mới</system:String>
-    
+
+    <system:String x:Key="Unit">Đơn vị</system:String>
     <system:String x:Key="Quantity">Số lượng</system:String>
     <system:String x:Key="Price">Giá Tiền</system:String>
     <system:String x:Key="ExchangeRate">Tỷ Giá</system:String>
     <system:String x:Key="TaxRate">Thuế suất</system:String>
     <system:String x:Key="Tax">Tiền thuế</system:String>
     <system:String x:Key="ExportPrice">Giá xuất</system:String>
+    <system:String x:Key="HSCode">Mã HS</system:String>
+    
+    <system:String x:Key="InputDate">Ngày Nhập</system:String>
+    
     <system:String x:Key="Input">Nhập</system:String>
     <system:String x:Key="Output">Xuất</system:String>
     <system:String x:Key="Stock">Tồn</system:String>
+    
+    <system:String x:Key="SearchBy">Tìm kiếm theo:</system:String>
+    <system:String x:Key="SearchText">Giá trị tìm kiếm</system:String>
+    
+    <system:String x:Key="Customer">Khách Hàng</system:String>
+    <system:String x:Key="Supplier">Nhà Cung Cấp</system:String>
+    
+    <system:String x:Key="PurchaseOrder">Đơn Đặt Hàng</system:String>
+    <system:String x:Key="Invoice">Hóa Đơn</system:String>
     
     <!-- Login Window -->
     <system:String x:Key="Login_Title">Đăng nhập</system:String>
@@ -41,7 +57,7 @@
     
     <!-- Main Window -->
     <system:String x:Key="Main_Title">Phần mềm Quản trị Doanh nghiệp</system:String>
-    <system:String x:Key="Main_ControlBar">Phần mềm quản trị Doanh nghiệp.</system:String>
+    <system:String x:Key="Main_ControlBar">Quản trị Doanh nghiệp</system:String>
     <system:String x:Key="Main_Menu_BillofMaterial">Quản lý Định mức</system:String>
     <system:String x:Key="Main_MenuItem_RawMaterial">Nguyên vật liệu</system:String>
     <system:String x:Key="Main_MenuItem_FinishGood">Thành phẩm</system:String>
@@ -49,19 +65,36 @@
     <system:String x:Key="Main_MenuItem_Report">Báo cáo</system:String>
     
     <!-- Raw Material -->
-    <system:String x:Key="RawMaterial_Title">Kho Nguyên vật liệu</system:String>
-    <system:String x:Key="RawMaterial_SearchBy">Tìm kiếm theo:</system:String>
-    <system:String x:Key="RawMaterial_SearchText">Giá trị tìm kiếm</system:String>
-    <system:String x:Key="RawMaterial_InputDate">Ngày Nhập</system:String>
+    <system:String x:Key="RawMaterial_Title">Kho Nguyên liệu</system:String>
+   
     <system:String x:Key="RawMaterial_CustomsDeclarationNo.">TKHQ Số</system:String>
     <system:String x:Key="RawMaterial_OpenDate">Ngày Mở</system:String>
     <system:String x:Key="RawMaterial_GoodsArrialDate">Ngày Hàng Đến</system:String>
     <system:String x:Key="RawMaterial_Code">Mã Nguyên Liệu</system:String>
     <system:String x:Key="RawMaterial_Name">Tên Nguyên Liệu</system:String>
-    <system:String x:Key="RawMaterial_HSCode">Mã HS</system:String>
     
+    <!-- Raw Material Add Item -->
+    <system:String x:Key="RawMaterialAddItem_Title">Thêm Nguyên Liệu</system:String>
     
-    <!-- Raw Material Input -->
-    <system:String x:Key="RawMaterialInput_Title">Kho Nguyên Vật Liệu</system:String>
+    <!-- Finish Good -->
+    <system:String x:Key="FinishGood_Title">Kho Thành Phẩm</system:String>
+    <system:String x:Key="FinishGood_Code">Mã Thành Phẩm</system:String>
+    <system:String x:Key="FinishGood_Name">Tên Thành Phẩm</system:String>
+    
+    <!-- Finish Good Add Item -->
+    <system:String x:Key="FinishGoodAddItem_Title">Thêm Thành Phẩm</system:String>
+    
+    <!-- Formula -->
+    <system:String x:Key="Formula_Title">Bảng Công Thức</system:String>
+    <system:String x:Key="Formula_Code">Mã Công Thức</system:String>
+    <system:String x:Key="Formula_OriginalConsumed">Tiêu Thụ Ban Đầu</system:String>
+    <system:String x:Key="Formula_LossRate">Tỷ Lệ Hao Hụt</system:String>
+    <system:String x:Key="Formula_ActualConsumed">Tiêu Thụ Thực Tế</system:String>
+    
+    <!-- Formula Add Item -->
+    <system:String x:Key="FormulaAddItem_Title">Bảng Công Thức</system:String>
+    
+    <!-- Settings -->
+    <system:String x:Key="Settings_Title">Cấu hình</system:String>
     
 </ResourceDictionary>

@@ -15,11 +15,14 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         
+        DataContext="{StaticResource FinishGoodVM}"
+        
         WindowStartupLocation="CenterScreen"
         
-        Title="Finish Good" Height="700" Width="900">
+        Title="{DynamicResource FinishGood_Title}" Height="700" Width="900">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -29,13 +32,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
 
                 <ComboBox Width="160" Margin="5" Grid.Column="0"
-                          materialDesign:HintAssist.Hint="Search by:"
+                          materialDesign:HintAssist.Hint="{DynamicResource SearchBy}"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                     <ComboBoxItem>
                         Formula Code
@@ -54,30 +54,36 @@
                     </ComboBoxItem>
                 </ComboBox>
                 <TextBox Grid.Column="1" Margin="5"
-                         materialDesign:HintAssist.Hint="Search text"
+                         materialDesign:HintAssist.Hint="{DynamicResource SearchText}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Button Grid.Column="2" Margin="5,5,5,5" Width="100"
-                        Style="{StaticResource MaterialDesignRaisedButton}">Add</Button>
-                <Button Grid.Column="3" Margin="0,5,5,5" Width="100"
-                        Style="{StaticResource MaterialDesignRaisedButton}">Edit</Button>
-                <Button Grid.Column="4" Margin="0,5,5,5" Width="100"
-                        Style="{StaticResource MaterialDesignRaisedButton}">Remove</Button>
             </Grid>
         </materialDesign:Card>
 
         <materialDesign:Card Grid.Row="1" Margin="10,0,10,10">
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding FinishGoodAddItemCommand}" 
+                        Margin="5" Width="100" Content="{DynamicResource Add}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"/>
+                <Button Margin="5" Width="100" Content="{DynamicResource Edit}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"/>
+                <Button Margin="5" Width="100" Content="{DynamicResource Remove}"
+                            Style="{StaticResource MaterialDesignRaisedButton}"/>
+            </StackPanel>
+        </materialDesign:Card>
+        
+        <materialDesign:Card Grid.Row="2" Margin="10,0,10,10">
             <ListView>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Input Date" />
-                        <GridViewColumn Header="Formula Code" />
-                        <GridViewColumn Header="Finish Good Code" />
-                        <GridViewColumn Header="Finish Good Name" />
-                        <GridViewColumn Header="HS Code" />
-                        <GridViewColumn Header="Quantity" />
-                        <GridViewColumn Header="Customer" />
-                        <GridViewColumn Header="PO." />
-                        <GridViewColumn Header="Invoice" />
+                        <GridViewColumn Header="{DynamicResource InputDate}" />
+                        <GridViewColumn Header="{DynamicResource Formula_Code}" />
+                        <GridViewColumn Header="{DynamicResource FinishGood_Code}" />
+                        <GridViewColumn Header="{DynamicResource FinishGood_Name}" />
+                        <GridViewColumn Header="{DynamicResource HSCode}" />
+                        <GridViewColumn Header="{DynamicResource Quantity}" />
+                        <GridViewColumn Header="{DynamicResource Customer}" />
+                        <GridViewColumn Header="{DynamicResource PurchaseOrder}" />
+                        <GridViewColumn Header="{DynamicResource Invoice}" />
                     </GridView>
                 </ListView.View>
             </ListView>

@@ -19,7 +19,7 @@
         
         WindowStartupLocation="CenterScreen"
         
-        Title="{StaticResource Main_Title}" Height="450" Width="800">
+        Title="{DynamicResource Main_Title}" Height="450" Width="800">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -27,6 +27,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- ControlBar -->
         <Grid Grid.Row="0">
             <materialDesign:ColorZone
                 Mode="PrimaryDark"
@@ -34,14 +35,23 @@
                 CornerRadius="3"
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"
                 Margin="2">
-                <StackPanel
-                    Orientation="Horizontal">
+                <DockPanel>
                     <ToggleButton
                         Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                     <TextBlock
                         VerticalAlignment="Center"
-                        Margin="16 0 0 0" Text="{StaticResource Main_ControlBar}"/>
-                </StackPanel>
+                        Margin="16 0 0 0" Text="{DynamicResource Main_ControlBar}"/>
+                    <Grid DockPanel.Dock="Right">
+                        <materialDesign:PopupBox HorizontalAlignment="Right"
+                                                 PlacementMode="BottomAndAlignRightEdges">
+                            <StackPanel Orientation="Vertical">
+                                <Button Command="{Binding SettingsCommand}"
+                                    Content="Settings"/>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                        
+                    </Grid>
+                </DockPanel>
             </materialDesign:ColorZone>
         </Grid>
         
@@ -78,7 +88,7 @@
                             Margin="4"
                             IsChecked="True"
                             IsEnabled="False"
-                            Content="{StaticResource Main_Menu_BillofMaterial}" />
+                            Content="{DynamicResource Main_Menu_BillofMaterial}" />
                         <RadioButton Grid.Row="2"
                             Style="{StaticResource MaterialDesignTabRadioButton}"
                             Margin="4"
@@ -128,7 +138,7 @@
                             <StackPanel Orientation="Vertical">
                                 <Image Source="../Resource/Icons/RawMaterial.png"
                                        Margin="5"/>
-                                <TextBlock Text="{StaticResource Main_MenuItem_RawMaterial}" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{DynamicResource Main_MenuItem_RawMaterial}" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                         <Button Margin="10" Width="130" Height="130" Command="{Binding FinishGoodCommand}"
@@ -137,7 +147,7 @@
                             <StackPanel Orientation="Vertical">
                                 <Image Source="../Resource/Icons/FinishGood.png"
                                        Margin="5"/>
-                                <TextBlock Text="{StaticResource Main_MenuItem_FinishGood}" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{DynamicResource Main_MenuItem_FinishGood}" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                         <Button Margin="10" Width="130" Height="130" Command="{Binding FormulaCommand}"
@@ -146,7 +156,7 @@
                             <StackPanel Orientation="Vertical">
                                 <Image Source="../Resource/Icons/Formula.png"
                                        Margin="5"/>
-                                <TextBlock Text="{StaticResource Main_MenuItem_Formula}" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{DynamicResource Main_MenuItem_Formula}" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                         <Button Margin="10" Width="130" Height="130"
@@ -155,7 +165,7 @@
                             <StackPanel Orientation="Vertical">
                                 <Image Source="../Resource/Icons/Report.png"
                                        Margin="5"/>
-                                <TextBlock Text="{StaticResource Main_MenuItem_Report}" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{DynamicResource Main_MenuItem_Report}" Margin="0,5,0,5" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </WrapPanel>

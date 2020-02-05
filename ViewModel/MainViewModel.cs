@@ -13,16 +13,12 @@ namespace MiniERP.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private bool isLoadedRawMaterial;
-        private bool isLoadedFinishGood;
-        private bool isLoadedFormula;
-        private bool isLoadedReport;
-
         #region Commands
         public ICommand RawMaterialCommand { get; set; }
         public ICommand FinishGoodCommand { get; set; }
         public ICommand FormulaCommand { get; set; }
         public ICommand ReportCommand { get; set; }
+        public ICommand SettingsCommand { get; set; }
         #endregion
 
         public MainViewModel()
@@ -32,8 +28,8 @@ namespace MiniERP.ViewModel
                 if (!isLoadedRawMaterial)
                 {
                     isLoadedRawMaterial = true;
-                    MiniERP.View.RawMaterialWindow rawmaterialWindow = new View.RawMaterialWindow();
-                    rawmaterialWindow.Show();
+                    MiniERP.View.RawMaterialWindow rawMaterialWindow = new View.RawMaterialWindow();
+                    rawMaterialWindow.Show();
                 }
             });
 
@@ -42,8 +38,8 @@ namespace MiniERP.ViewModel
                 if (!isLoadedFinishGood)
                 {
                     isLoadedFinishGood = true;
-                    MiniERP.View.FinishGoodAddWindow finishgoodWindow = new View.FinishGoodAddWindow();
-                    finishgoodWindow.Show();
+                    MiniERP.View.FinishGoodWindow finishGoodWindow = new View.FinishGoodWindow();
+                    finishGoodWindow.Show();
                 }
             });
 
@@ -63,6 +59,12 @@ namespace MiniERP.ViewModel
                 {
                     isLoadedReport = true;
                 }
+            });
+
+            SettingsCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                View.SettingsWindow settingsWindow = new View.SettingsWindow();
+                settingsWindow.ShowDialog();
             });
         }
     }
