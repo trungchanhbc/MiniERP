@@ -19,35 +19,13 @@ namespace MiniERP.ViewModel
     {
         public string SecrectKey = "a973baad1982333ee84d0f7afd636a4869dfe60de33631ebf2cc50501364d028" +
                                    "f7be9d78eddea7e0190375644d7bacffe1e25d2d4b38aee30ca3a682f0d76b84";
-        public string ApplicationKey;
-        public string RegistryKey;
+        public static bool RegistrationVerified;
 
-        public string HDDSerialNumber;
-
-        public bool isLoadedRawMaterial;
-        public bool isLoadedFinishGood;
-        public bool isLoadedFormula;
-        public bool iLoadedSettings;
-
-        public ObservableCollection<string> LanguageList { get; set; }
+        public static ObservableCollection<string> LanguageList { get; set; }
 
         public BaseViewModel()
         {
-            LanguageList = new ObservableCollection<string>
-            {
-                "English",
-                "Tiếng việt",
-                "Français"
-            };
-
-            // Get Hard Drive Serial number
-            HDDSerialNumber = GetHDDSerialNumber();
-
-            // Create Application Key
-            ApplicationKey = HashString(BCrypt_Encode(HDDSerialNumber + SecrectKey) + SecrectKey);
-            // Get Registry Key
-            RegistryKey = GetRegistryKey();
-
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -56,66 +34,8 @@ namespace MiniERP.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public bool isRegistered()
-        {
-            if (ApplicationKey == RegistryKey)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private string HashString(string inputString)
-        {
-            using (System.Security.Cryptography.SHA512 hashTool = System.Security.Cryptography.SHA512.Create())
-            {
-                hashTool.ComputeHash(System.Text.Encoding.UTF8.GetBytes(inputString));
-                return BitConverter.ToString(hashTool.Hash).Replace("-","");
-            }
-        }
-
-        private string BCrypt_Encode(string inputString)
-        {
-            string salt = BCrypt.Net.BCrypt.GenerateSalt();
-            string result = BCrypt.Net.BCrypt.HashPassword(inputString, salt, true, BCrypt.Net.HashType.SHA512);
-            return result.ToUpper();
-        }
-
-        private string GetHDDSerialNumber()
-        {
-            using (ManagementObjectSearcher search = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia"))
-            {
-                string SerialNumber = null;
-                foreach (ManagementObject HDD in search.Get())
-                {
-                    SerialNumber += HDD["SerialNumber"];
-                }
-
-                return SerialNumber;
-            }
-        }
-
-        private string GetRegistryKey()
-        {
-            string currentDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            string filePath = Path.Combine(currentDirectory, "Registration\\RegistryKey.xml");
-            if (File.Exists(filePath))
-            {
-                // Read Registry File
-                XElement registryFile = XElement.Load(filePath);
-                return registryFile.Element("Key").Value.ToString();
-            }
-            else
-            {
-                return null;
-            }
-        }
-
     }
+
     class RelayCommand<T> : ICommand
     {
         private readonly Predicate<T> _canExecute;
@@ -152,8 +72,6 @@ namespace MiniERP.ViewModel
             remove { CommandManager.RequerySuggested -= value; }
         }
     }
-
-
 
     public static class LanguageManager
     {

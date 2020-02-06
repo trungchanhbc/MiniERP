@@ -25,40 +25,26 @@ namespace MiniERP.ViewModel
         {
             RawMaterialCommand = new RelayCommand<object>((p) => { return true; }, (p) => 
             {
-                if (!isLoadedRawMaterial)
-                {
-                    isLoadedRawMaterial = true;
-                    MiniERP.View.RawMaterialWindow rawMaterialWindow = new View.RawMaterialWindow();
-                    rawMaterialWindow.Show();
-                }
+                MiniERP.View.RawMaterialWindow rawMaterialWindow = new View.RawMaterialWindow();
+                rawMaterialWindow.Show();
             });
 
             FinishGoodCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                if (!isLoadedFinishGood)
-                {
-                    isLoadedFinishGood = true;
-                    MiniERP.View.FinishGoodWindow finishGoodWindow = new View.FinishGoodWindow();
-                    finishGoodWindow.Show();
-                }
+                MiniERP.View.FinishGoodWindow finishGoodWindow = new View.FinishGoodWindow();
+                finishGoodWindow.Show();
             });
 
             FormulaCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                if (!isLoadedFormula)
-                {
-                    isLoadedFormula = true;
-                    MiniERP.View.FormulaWindow formulaWindow = new View.FormulaWindow();
-                    formulaWindow.Show();
-                }
+
+                MiniERP.View.FormulaWindow formulaWindow = new View.FormulaWindow();
+                formulaWindow.Show();
             });
 
             ReportCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
-                if (!isLoadedReport)
-                {
-                    isLoadedReport = true;
-                }
+                
             });
 
             SettingsCommand = new RelayCommand<object>((p) => { return true; }, (p) =>

@@ -27,7 +27,7 @@
     <!-- Window Loaded Event-->
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoginWindowLoadedCommand}"
+            <i:InvokeCommandAction Command="{Binding LoadedCMD}"
                                    CommandParameter="{Binding ElementName=LoginWin}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
@@ -83,11 +83,11 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <!-- Button Submit -->
-                        <Button Command="{Binding LoadMainWindowCommand}"
+                        <Button Command="{Binding LoadMainWindowCMD}"
                                 CommandParameter="{Binding ElementName=LoginWin}"
                             Grid.Column="0" Content="{DynamicResource Submit}" Margin="5,15,5,0"></Button>
                         <!-- Button Exit -->
-                        <Button Command="{Binding CloseCommand}"
+                        <Button Command="{Binding CloseCMD}"
                             Grid.Column="1" Content="{DynamicResource Exit}" Margin="5,15,5,0" Background="OrangeRed"></Button>
                     </Grid>
                     
@@ -101,7 +101,7 @@
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding LanguageChangedCommand}" 
+                                    <i:InvokeCommandAction Command="{Binding LanguageChangeCMD}" 
                                                            CommandParameter="{Binding ElementName=cboLanguage}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>

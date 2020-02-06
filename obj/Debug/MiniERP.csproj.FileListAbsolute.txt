@@ -3,12 +3,10 @@ E:\Development\Projects\MiniERP\bin\Debug\Database\Database_v2.accdb
 E:\Development\Projects\MiniERP\bin\Debug\MiniERP.exe.config
 E:\Development\Projects\MiniERP\bin\Debug\MiniERP.exe
 E:\Development\Projects\MiniERP\bin\Debug\MiniERP.pdb
-E:\Development\Projects\MiniERP\bin\Debug\BCrypt.Net-Next.dll
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignColors.dll
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignThemes.Wpf.dll
 E:\Development\Projects\MiniERP\bin\Debug\Microsoft.Expression.Interactions.dll
 E:\Development\Projects\MiniERP\bin\Debug\System.Windows.Interactivity.dll
-E:\Development\Projects\MiniERP\bin\Debug\BCrypt.Net-Next.xml
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignColors.pdb
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignThemes.Wpf.pdb
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignThemes.Wpf.xml
@@ -49,4 +47,7 @@ E:\Development\Projects\MiniERP\obj\Debug\MiniERP.csproj.GenerateResource.cache
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.csproj.CopyComplete
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.exe
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.pdb
-E:\Development\Projects\MiniERP\obj\Debug\MiniERP.csprojAssemblyReference.cache
+E:\Development\Projects\MiniERP\bin\Debug\BCrypt.Net-Next.dll
+E:\Development\Projects\MiniERP\bin\Debug\BCrypt.Net-Next.xml
+E:\Development\Projects\MiniERP\obj\Debug\View\RegistrationWindow.g.cs
+E:\Development\Projects\MiniERP\obj\Debug\View\RegistrationWindow.baml
