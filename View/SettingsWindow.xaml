@@ -21,23 +21,31 @@
         
         WindowStartupLocation="CenterScreen"
         
+        Name="SettingsWin"
         Title="{StaticResource Settings_Title}" Height="400" Width="350">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadSettingsWindowCmd}" 
+                                   CommandParameter="{Binding ElementName=cboLanguage}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="10">
-            <Grid>
-                <ComboBox ItemsSource="{Binding LanguageList}" x:Name="cboLanguage"
-                          SelectedIndex="{Binding Source={x:Static properties:Settings.Default}, Path=Language, Mode=TwoWay}"
-                          materialDesign:HintAssist.Hint="Language"
-                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding LanguageChangedCmd}"
-                                                    CommandParameter="{Binding ElementName=cboLanguage}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </ComboBox>
-                <Grid></Grid>
-            </Grid>
-        </StackPanel>
+        <materialDesign:Card Margin="10">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <Grid>
+                    <ComboBox Name="cboLanguage" 
+                              ItemsSource="{Binding Language}"
+                              DisplayMemberPath="DisplayName"
+                              materialDesign:HintAssist.Hint="Language"
+                              SelectedItem="{Binding SelectedLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsEditable="False"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    </ComboBox>
+                    <Grid>
+                    
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </Window>

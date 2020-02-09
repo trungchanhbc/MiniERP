@@ -21,23 +21,6 @@ namespace MiniERP.View
     {
         public LoginWindow()
         {
-            // Check Application Settings for load Language
-            bool isEn = Properties.Settings.Default.Language == 0 ? true : false;
-            ResourceDictionary dict = new ResourceDictionary();
-
-            if (isEn)
-            {
-                dict.Source = new Uri("../ResourceXAML/MainResource-EN.xaml", UriKind.Relative);
-                Application.Current.Resources.MergedDictionaries.Clear();
-                Application.Current.Resources.MergedDictionaries.Add(dict);
-            }
-            else
-            {
-                dict.Source = new Uri("../ResourceXAML/MainResource-VN.xaml", UriKind.Relative);
-                Application.Current.Resources.MergedDictionaries.Clear();
-                Application.Current.Resources.MergedDictionaries.Add(dict);
-            }
-
             InitializeComponent();
         }
     }

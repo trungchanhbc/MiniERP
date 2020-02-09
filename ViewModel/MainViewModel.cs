@@ -18,7 +18,8 @@ namespace MiniERP.ViewModel
         public ICommand FinishGoodCommand { get; set; }
         public ICommand FormulaCommand { get; set; }
         public ICommand ReportCommand { get; set; }
-        public ICommand SettingsCommand { get; set; }
+        public ICommand SettingsCMD { get; set; }
+        public ICommand RegistrationCMD { get; set; }
         #endregion
 
         public MainViewModel()
@@ -47,10 +48,16 @@ namespace MiniERP.ViewModel
                 
             });
 
-            SettingsCommand = new RelayCommand<object>((p) => { return true; }, (p) =>
+            SettingsCMD = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 View.SettingsWindow settingsWindow = new View.SettingsWindow();
                 settingsWindow.ShowDialog();
+            });
+
+            RegistrationCMD = new RelayCommand<object>((p) => { return true; }, (p) => 
+            {
+                View.RegistrationWindow registrationWindow = new View.RegistrationWindow();
+                registrationWindow.ShowDialog();
             });
         }
     }

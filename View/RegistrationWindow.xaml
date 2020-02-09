@@ -21,15 +21,19 @@
         
         Name="RegistrationWin"
         
-        Title="RegistrationWindow" Height="450" Width="800">
+        Title="Registration" Height="400" Width="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            
+        <Grid Grid.Row="0" Margin="10">
+            <materialDesign:Card>
+                <Button Command="{Binding}" Content="Registry"
+                        Width="100" Margin="5" HorizontalAlignment="Left"
+                        Style="{StaticResource MaterialDesignRaisedButton}"/>
+            </materialDesign:Card>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -38,8 +42,26 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0"></Grid>
-            <Grid Grid.Row="1"></Grid>
+            <Grid Grid.Row="0" Margin="10,0,10,10">
+                <materialDesign:Card>
+                    <TextBox Margin="5" Text="{Binding display}"
+                             TextWrapping="Wrap"
+                             IsReadOnly="True"
+                             VerticalAlignment="Stretch"
+                             VerticalScrollBarVisibility="Auto"
+                             materialDesign:HintAssist.Hint="Application Serial:" />
+                </materialDesign:Card>
+            </Grid>
+            <Grid Grid.Row="1" Margin="10,0,10,10">
+                <materialDesign:Card>
+                    <TextBox Margin="5"
+                             TextWrapping="Wrap"
+                             IsReadOnly="True"
+                             VerticalAlignment="Stretch"
+                             VerticalScrollBarVisibility="Auto"
+                             materialDesign:HintAssist.Hint="Registration Key:" /> 
+                </materialDesign:Card>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

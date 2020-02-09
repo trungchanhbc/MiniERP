@@ -3,10 +3,12 @@ E:\Development\Projects\MiniERP\bin\Debug\Database\Database_v2.accdb
 E:\Development\Projects\MiniERP\bin\Debug\MiniERP.exe.config
 E:\Development\Projects\MiniERP\bin\Debug\MiniERP.exe
 E:\Development\Projects\MiniERP\bin\Debug\MiniERP.pdb
+E:\Development\Projects\MiniERP\bin\Debug\BCrypt.Net-Next.dll
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignColors.dll
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignThemes.Wpf.dll
 E:\Development\Projects\MiniERP\bin\Debug\Microsoft.Expression.Interactions.dll
 E:\Development\Projects\MiniERP\bin\Debug\System.Windows.Interactivity.dll
+E:\Development\Projects\MiniERP\bin\Debug\BCrypt.Net-Next.xml
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignColors.pdb
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignThemes.Wpf.pdb
 E:\Development\Projects\MiniERP\bin\Debug\MaterialDesignThemes.Wpf.xml
@@ -20,6 +22,7 @@ E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialAddItemWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\LoginWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\MainWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialWindow.g.cs
+E:\Development\Projects\MiniERP\obj\Debug\View\RegistrationWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\SettingsWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\TransferDataWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\App.g.cs
@@ -39,6 +42,7 @@ E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialAddItemWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\LoginWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\MainWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialWindow.baml
+E:\Development\Projects\MiniERP\obj\Debug\View\RegistrationWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\SettingsWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\TransferDataWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.g.resources
@@ -47,7 +51,3 @@ E:\Development\Projects\MiniERP\obj\Debug\MiniERP.csproj.GenerateResource.cache
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.csproj.CopyComplete
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.exe
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.pdb
-E:\Development\Projects\MiniERP\bin\Debug\BCrypt.Net-Next.dll
-E:\Development\Projects\MiniERP\bin\Debug\BCrypt.Net-Next.xml
-E:\Development\Projects\MiniERP\obj\Debug\View\RegistrationWindow.g.cs
-E:\Development\Projects\MiniERP\obj\Debug\View\RegistrationWindow.baml

@@ -45,8 +45,12 @@
                         <materialDesign:PopupBox HorizontalAlignment="Right"
                                                  PlacementMode="BottomAndAlignRightEdges">
                             <StackPanel Orientation="Vertical">
-                                <Button Command="{Binding SettingsCommand}"
-                                    Content="Settings"/>
+                                <!-- Settings -->
+                                <Button Command="{Binding SettingsCMD}"
+                                    Content="Settings" />
+                                <!-- Registration -->
+                                <Button Command="{Binding RegistrationCMD}"
+                                        Content="Registration" />
                             </StackPanel>
                         </materialDesign:PopupBox>
                         

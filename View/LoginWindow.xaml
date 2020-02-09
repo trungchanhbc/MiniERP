@@ -27,8 +27,8 @@
     <!-- Window Loaded Event-->
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedCMD}"
-                                   CommandParameter="{Binding ElementName=LoginWin}"/>
+            <i:InvokeCommandAction Command="{Binding LoginLoadedCmd}"
+                                   CommandParameter="{Binding ElementName=cboLanguage}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     
@@ -83,7 +83,7 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <!-- Button Submit -->
-                        <Button Command="{Binding LoadMainWindowCMD}"
+                        <Button Command="{Binding LoadMainWindowCmd}"
                                 CommandParameter="{Binding ElementName=LoginWin}"
                             Grid.Column="0" Content="{DynamicResource Submit}" Margin="5,15,5,0"></Button>
                         <!-- Button Exit -->
@@ -94,17 +94,12 @@
                     <Grid Grid.Row="3" HorizontalAlignment="Left" MinWidth="100">
                         <!-- ComboBox Language-->
                         <ComboBox Name="cboLanguage" Margin="0,0,0,10" 
-                                  ItemsSource="{Binding LanguageList}"
+                                  ItemsSource="{Binding Language}"
+                                  DisplayMemberPath="DisplayName"
                                   materialDesign:HintAssist.Hint="Language"
-                                  SelectedIndex="{Binding Source={x:Static properties:Settings.Default}, Path=Language, Mode=TwoWay}"
+                                  SelectedItem="{Binding SelectedLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   IsEditable="False"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding LanguageChangeCMD}" 
-                                                           CommandParameter="{Binding ElementName=cboLanguage}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
                         </ComboBox>
                     </Grid>
                 </Grid>
