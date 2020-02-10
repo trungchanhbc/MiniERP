@@ -17,6 +17,7 @@
     <viewmodel:FinishGoodViewModel x:Key="FinishGoodVM" />
     <viewmodel:FormulaViewModel x:Key="FormulaVM" />
     <viewmodel:RegistrationViewModel x:Key="RegistrationVM" />
+    <viewmodel:TestViewModel x:Key="TestVM" />
 
     <!-- Common Strings-->
     <system:String x:Key="Add">Add</system:String>

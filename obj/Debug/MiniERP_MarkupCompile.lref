@@ -1,5 +1,6 @@
-﻿E:\Development\Projects\MiniERP\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 FE:\Development\Projects\MiniERP\App.xaml;;
+FE:\Development\Projects\MiniERP\ResourceXAML\MainResource-EN - Backup.xaml;;
 FE:\Development\Projects\MiniERP\ResourceXAML\MainResource-FR.xaml;;
 FE:\Development\Projects\MiniERP\ResourceXAML\MainResource-VN.xaml;;
 FE:\Development\Projects\MiniERP\ResourceXAML\MainResource-EN.xaml;;
@@ -13,5 +14,6 @@ FE:\Development\Projects\MiniERP\View\MainWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\RawMaterialWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\RegistrationWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\SettingsWindow.xaml;;
+FE:\Development\Projects\MiniERP\View\TestWindow.xaml;;
 FE:\Development\Projects\MiniERP\View\TransferDataWindow.xaml;;
 

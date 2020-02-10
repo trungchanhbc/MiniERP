@@ -44,9 +44,9 @@
 
             <Grid Grid.Row="0" Margin="10,0,10,10">
                 <materialDesign:Card>
-                    <TextBox Margin="5" Text="{Binding display}"
+                    <TextBox Margin="5" Text="{Binding DisplayKey}"
                              TextWrapping="Wrap"
-                             IsReadOnly="True"
+                             
                              VerticalAlignment="Stretch"
                              VerticalScrollBarVisibility="Auto"
                              materialDesign:HintAssist.Hint="Application Serial:" />

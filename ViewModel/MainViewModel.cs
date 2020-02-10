@@ -14,6 +14,7 @@ namespace MiniERP.ViewModel
     public class MainViewModel : BaseViewModel
     {
         #region Commands
+        public ICommand MainWindowLoaded { get; set; }
         public ICommand RawMaterialCommand { get; set; }
         public ICommand FinishGoodCommand { get; set; }
         public ICommand FormulaCommand { get; set; }
@@ -24,6 +25,11 @@ namespace MiniERP.ViewModel
 
         public MainViewModel()
         {
+            MainWindowLoaded = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                Task tskCheckRegistered = Task.Run(async () => CheckRegistered());
+            });
+
             RawMaterialCommand = new RelayCommand<object>((p) => { return true; }, (p) => 
             {
                 MiniERP.View.RawMaterialWindow rawMaterialWindow = new View.RawMaterialWindow();
@@ -60,5 +66,7 @@ namespace MiniERP.ViewModel
                 registrationWindow.ShowDialog();
             });
         }
+
+       
     }
 }

@@ -288,12 +288,4 @@ namespace MiniERP.Model
         }
     }
 
-    /// <summary>
-    /// Language
-    /// </summary>
-    //public enum Language
-    //{
-    //    English,
-    //    Vietnamese
-    //}
 }

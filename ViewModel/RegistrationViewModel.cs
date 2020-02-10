@@ -8,6 +8,10 @@ namespace MiniERP.ViewModel
 {
     public class RegistrationViewModel : BaseViewModel
     {
-        
+        public RegistrationViewModel()
+        {
+            var temp = DisplayKey;
+
+        }
     }
 }

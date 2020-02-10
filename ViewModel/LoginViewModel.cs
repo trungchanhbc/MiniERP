@@ -17,8 +17,6 @@ namespace MiniERP.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
-        Task tskIsRegistered;
-
         #region Commands
         public ICommand LoginLoadedCmd { get; set; }
         //public ICommand LoadCommand { get; set; }
@@ -30,10 +28,12 @@ namespace MiniERP.ViewModel
         public LoginViewModel()
         {
             // Create Language List
-            Language = new ObservableCollection<LanguageList>();
-            Language.Add(new LanguageList { Code = "EN", DisplayName = "English" });
-            Language.Add(new LanguageList { Code = "VN", DisplayName = "Tiếng việt" });
-            Language.Add(new LanguageList { Code = "FR", DisplayName = "Français" });
+            Language = new ObservableCollection<LanguageList>
+            {
+                new LanguageList { Code = "EN", DisplayName = "English" },
+                new LanguageList { Code = "VN", DisplayName = "Tiếng việt" },
+                new LanguageList { Code = "FR", DisplayName = "Français" }
+            };
 
             LoginLoadedCmd = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
             {
@@ -54,17 +54,14 @@ namespace MiniERP.ViewModel
                         break;
                 }
 
-                tskIsRegistered = Task.Run(async () => Libraries.VerifyKey());
+                Task tskIsRegistered = Task.Run(async () => VerifyKey());
             });
         
             LoadMainWindowCmd = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                if (tskIsRegistered.Status == TaskStatus.RanToCompletion && Variables.isRegistered == true)
-                {
-                    View.MainWindow mainWindow = new View.MainWindow();
-                    mainWindow.Show();
-                    p.Close();
-                }
+                View.MainWindow mainWindow = new View.MainWindow();
+                mainWindow.Show();
+                p.Close();
             });
 
             CloseCMD = new RelayCommand<object>((p) => { return true; }, (p) => 

@@ -1,0 +1,74 @@
+﻿<Window x:Class="MiniERP.View.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:MiniERP.View"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        WindowStartupLocation="CenterScreen"
+
+        DataContext="{StaticResource TestVM}"
+        
+        Name="TestWin"
+        Title="TestWindow" Height="450" Width="800">
+    
+    <!-- Loaded Event -->
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding TestLoadedCmd}"
+                                   CommandParameter="{Binding ElementName=lsvOldData}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <Grid>
+        <ListView x:Name="lsvOldData" ItemsSource="{Binding BoMList}">
+            <ListView.View>
+                <GridView>
+                    <!-- RM List -->
+                    <!--<GridViewColumn Header="InputDate" DisplayMemberBinding="{Binding Path=InputDate, StringFormat='dd/MM/yyyy'}"/>
+                    <GridViewColumn Header="Customs Declaration No." DisplayMemberBinding="{Binding Path=CusDecNo}" />
+                    <GridViewColumn Header="Open Date" DisplayMemberBinding="{Binding Path=OpenDate}" />
+                    <GridViewColumn Header="Received Date" DisplayMemberBinding="{Binding Path=ReceivedDate}" />
+                    <GridViewColumn Header="RM Code" DisplayMemberBinding="{Binding Path=RMCode}" />
+                    <GridViewColumn Header="RM Name" DisplayMemberBinding="{Binding Path=RMName}" />
+                    <GridViewColumn Header="HS Code" DisplayMemberBinding="{Binding Path=HSCode}" />
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=Price}" />
+                    <GridViewColumn Header="Exchange Rate" DisplayMemberBinding="{Binding Path=ExRate}" />-->
+
+                    <!-- FG List -->
+                    <!--<GridViewColumn Header="Item Code" DisplayMemberBinding="{Binding Path=ItemCode}" />
+                    <GridViewColumn Header="FG Name" DisplayMemberBinding="{Binding Path=FGName}" />
+                    <GridViewColumn Header="HS Code" DisplayMemberBinding="{Binding Path=HSCode}" />
+                    <GridViewColumn Header="FG Code" DisplayMemberBinding="{Binding Path=FGCode}" />
+                    <GridViewColumn Header="Qty" DisplayMemberBinding="{Binding Path=Qty}" />
+                    <GridViewColumn Header="Customer" DisplayMemberBinding="{Binding Path=Customer}" />
+                    <GridViewColumn Header="Po" DisplayMemberBinding="{Binding Path=PO}" />
+                    <GridViewColumn Header="Invoice" DisplayMemberBinding="{Binding Path=Invoice}" />
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Date, StringFormat='dd/MM/yyyy'}" />
+                    <GridViewColumn Header="Log Code" DisplayMemberBinding="{Binding Path=LogCode}" />-->
+                    
+                    <!-- BoM List -->
+                    <GridViewColumn Header="FG Code" DisplayMemberBinding="{Binding Path=FGCode}" />
+                    <GridViewColumn Header="RM Code" DisplayMemberBinding="{Binding Path=RMCode}" />
+                    <GridViewColumn Header="RM Name" DisplayMemberBinding="{Binding Path=RMName}" />
+                    <GridViewColumn Header="Unit" DisplayMemberBinding="{Binding Path=Unit}" />
+                    <GridViewColumn Header="BoM Qty" DisplayMemberBinding="{Binding Path=BoMQty}" />
+                    <GridViewColumn Header="Rate" DisplayMemberBinding="{Binding Path=Rate}" />
+                    <GridViewColumn Header="BoM Total" DisplayMemberBinding="{Binding Path=BoMTotal}" />
+                    <GridViewColumn Header="Supplier" DisplayMemberBinding="{Binding Path=Supplier}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

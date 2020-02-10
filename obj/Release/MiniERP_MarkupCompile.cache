@@ -10,11 +10,11 @@ none
 false
 TRACE
 E:\Development\Projects\MiniERP\App.xaml
-14890458860
-21189158883
-261628012914
+161065101570
+
+28-1059578339
 1241079035752
-ResourceXAML\MainResource-FR.xaml;ResourceXAML\MainResource-VN.xaml;ResourceXAML\MainResource-EN.xaml;View\FinishGoodAddItemWindow.xaml;View\FinishGoodWindow.xaml;View\FormulaWindow.xaml;View\FormulaAddWindow.xaml;View\RawMaterialAddItemWindow.xaml;View\LoginWindow.xaml;View\MainWindow.xaml;View\RawMaterialWindow.xaml;View\RegistrationWindow.xaml;View\SettingsWindow.xaml;View\TransferDataWindow.xaml;
+ResourceXAML\MainResource-EN - Backup.xaml;ResourceXAML\MainResource-FR.xaml;ResourceXAML\MainResource-VN.xaml;ResourceXAML\MainResource-EN.xaml;View\FinishGoodAddItemWindow.xaml;View\FinishGoodWindow.xaml;View\FormulaWindow.xaml;View\FormulaAddWindow.xaml;View\RawMaterialAddItemWindow.xaml;View\LoginWindow.xaml;View\MainWindow.xaml;View\RawMaterialWindow.xaml;View\RegistrationWindow.xaml;View\SettingsWindow.xaml;View\TestWindow.xaml;View\TransferDataWindow.xaml;
 
 False
 
