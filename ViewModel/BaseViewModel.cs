@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using System.Collections.ObjectModel;
 using System.Data.OleDb;
 using System.Data;
+using MiniERP.Model;
 
 namespace MiniERP.ViewModel
 {
@@ -59,10 +60,25 @@ namespace MiniERP.ViewModel
         public static bool isRegistered = false;
 
         // Database Connection
-        string strCon = @"Provider=Microsoft.ACE.OLEDB.12.0;DATA SOURCE=Database\\OldDatabase.accdb;JET OLEDB:DATABASE PASSWORD=1234567890";
-        OleDbConnection db = new OleDbConnection();
-        DataSet ds = new DataSet();
+        const string strConOld = @"Provider=Microsoft.ACE.OLEDB.12.0;DATA SOURCE=..\\..\\Database\\OldDatabase.accdb;JET OLEDB:DATABASE PASSWORD=1234567890";
+        OleDbConnection dbOld = new OleDbConnection();
 
+        const string strConNew = @"Provider=Microsoft.ACE.OLEDB.12.0;DATA SOURCE=..\\..\\Database\\Database.accdb;JET OLEDB:DATABASE PASSWORD=1234567890";
+        OleDbConnection dbNew = new OleDbConnection();
+
+        private readonly DataSet ds = new DataSet();
+
+        // Raw Material Info
+        private ObservableCollection<RawMaterialInfo> rawMaterialInfos;
+        public ObservableCollection<RawMaterialInfo> RawMaterialInfos
+        {
+            get { return rawMaterialInfos; }
+            set { rawMaterialInfos = value; OnPropertyChanged(); }
+        }
+
+
+
+        /*
         /// <summary>
         ///     OLD DATABASE
         /// </summary>
@@ -97,7 +113,7 @@ namespace MiniERP.ViewModel
             get { return _RMOutputLog; }
             set { _RMOutputLog = value; OnPropertyChanged(); }
         }
-
+        */
         #endregion
 
         public BaseViewModel()
@@ -114,98 +130,260 @@ namespace MiniERP.ViewModel
 
         #endregion
 
+        #region TransferData
+        public async Task TransferData()
+        {
+            // Connect to Old Database and Load all Tables into DataSet
+            dbOld = new OleDbConnection(strConOld);
+            dbOld.Open();
+            List<Task> tskLoadOldDB = new List<Task>()
+            {
+                Task.Run(() => Database_Load("RM", dbOld, ds)),
+                Task.Run(() => Database_Load("FG", dbOld, ds)),
+                Task.Run(() => Database_Load("BoM", dbOld, ds)),
+                Task.Run(() => Database_Load("RMOutputLog", dbOld, ds))
+            };
+            await Task.WhenAll(tskLoadOldDB);
+
+            // Connect to new Database
+            dbNew = new OleDbConnection(strConNew);
+            dbNew.Open();
+
+            List<Task> tasks = new List<Task>
+            {
+                Task.Run(() => TransferRawMaterialInfo())
+                //Task.Run(() => TransferCustomsDeclaration()),
+                //Task.Run(() => TransferRawMaterialInput())
+                //Task.Run(() => TransferSupplier())
+            };
+
+
+            dbOld.Close();
+            dbNew.Close();
+
+            MessageBox.Show("Done");
+        }
+        
+        private async Task Database_Load(string TableName, OleDbConnection db, DataSet ds)
+        {
+            string strQry = "SELECT * FROM " + TableName;
+            OleDbCommand cmd = new OleDbCommand(strQry, db);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            await Task.Run(() => da.Fill(ds,TableName));
+        }
+
+        public async Task TransferRawMaterialInfo()
+        {
+            var dataRows = (from DataRow dr in ds.Tables["RM"].Rows
+                            //group dr by dr["RMCode"] into r
+                            select new 
+                            { 
+                                RMCode = dr["RMCode"], 
+                                RMName = dr["RMName"],
+                                HSCode = dr["HSCode"]
+                            }).Distinct();
+
+            OleDbCommand cmd = new OleDbCommand("INSERT INTO RawMaterialInfo VALUES(@Code, @Name, @HSCode, @UnitID)", dbNew);
+            foreach (DataRow dr in ds.Tables["RawMaterialInfo"].Rows)
+            {
+                // Check and fix Unit by ID 
+                string strUnit = dr["Unit"].ToString().Replace(" ","").ToLower();
+                int idUnit = 0;
+                switch(strUnit)
+                {
+                    case "kg":
+                        idUnit = 1;
+                        break;
+                    case "cái":
+                        idUnit = 2;
+                        break;
+                    default:
+                        idUnit = 9999;
+                        break;
+                }
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add(new OleDbParameter("@Code", dr["RMCode"].ToString()));
+                cmd.Parameters.Add(new OleDbParameter("@Name", dr["RMName"].ToString()));
+                cmd.Parameters.Add(new OleDbParameter("@HSCode", dr["HSCode"].ToString()));
+                cmd.Parameters.Add(new OleDbParameter("@UnitID", idUnit));
+                await Task.Run(() => cmd.ExecuteNonQuery());
+            }
+        }
+        // ..... Raw Material Input => not finished
+        public async Task TransferRawMaterialInput()
+        {
+            // Load Data from Old Database
+            string strQry = "SELECT * FROM RM";
+            OleDbCommand cmd = new OleDbCommand(strQry, dbOld);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            await Task.Run(() => da.Fill(ds, "RawMaterialInput"));
+
+            var i = 0;
+
+            // Clear all data in RawMaterialInput before transfer
+            //strQry = "DELETE FROM RawMaterialInput";
+            //cmd = new OleDbCommand(strQry, dbNew);
+            //await Task.Run(() => cmd.ExecuteNonQuery());
+
+            //strQry = "";
+            //cmd = new OleDbCommand(strQry, dbNew);
+            //foreach(DataRow dr in ds.Tables["RawMaterialInput"].Rows)
+            //{
+
+            //}
+        }
+        public async Task TransferCustomsDeclaration()
+        {
+            // Clear CustomsDeclaration table in new Database
+            string strQry = "DELETE FROM CustomsDeclaration";
+            OleDbCommand cmd = new OleDbCommand(strQry, dbNew);
+            await Task.Run(() => cmd.ExecuteNonQuery());
+
+            // Load data from old Database
+            strQry = "SELECT CusDecNo, MAX(OpenDate) AS OpenDate, MAX(ReceivedDate) AS ReceivedDate, MAX(InputDate) AS InputDate FROM RM GROUP BY CusDecNo;";
+            cmd = new OleDbCommand(strQry, dbOld);
+            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+            await Task.Run(() => da.Fill(ds, "CustomsDeclaration"));
+
+            strQry = "INSERT INTO CustomsDeclaration VALUES (@Code, @OpenDate, @GoodsArrivalDate, @InputDate)";
+            cmd = new OleDbCommand(strQry, dbNew);
+            foreach (DataRow dr in ds.Tables["CustomsDeclaration"].Rows)
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@Code", dr["CusDecNo"].ToString());
+                cmd.Parameters.AddWithValue("@OpenDate", DateTime.TryParse(dr["OpenDate"].ToString(), out DateTime dtOut1) ? dtOut1 : new DateTime());
+                cmd.Parameters.AddWithValue("@GoodsArrivalDate", DateTime.TryParse(dr["ReceivedDate"].ToString(), out DateTime dtOut2) ? dtOut2 : new DateTime());
+                cmd.Parameters.AddWithValue("@InputDate", DateTime.TryParse(dr["InputDate"].ToString(), out DateTime dtOut3) ? dtOut3 : new DateTime());
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        #endregion
+
         #region Database
-        public void oldDatabase_Get()
-        {
-            db = new OleDbConnection(strCon);
-            db.Open();
+        /*
+        //public async Task OldDatabase_Get()
+        //{
+        //    db = new OleDbConnection(strCon);
+        //    db.Open();
 
-            //Task tskRM = Task.Run(() => RM_Load());
-            //Task tskFG = Task.Run(() => FG_Load());
-            //Task tskBoM = Task.Run(() => BoM_Load());
-            BoM_Load();
-        }
+        //    List<Task> tasks = new List<Task>
+        //    {
+        //        Task.Run(() => RM_Load()),
+        //        Task.Run(() => FG_Load()),
+        //        Task.Run(() => BoM_Load())
+        //    };
 
-        public async Task RM_Load()
-        {
-            OleDbCommand cmd = new OleDbCommand("SELECT * FROM RM", db);
-            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
-            await Task.Run(() => da.Fill(ds, "RM"));
+        //    //Task tskRM = Task.Run(() => RM_Load());
+        //    //Task tskFG = Task.Run(() => FG_Load());
+        //    //Task tskBoM = Task.Run(() => BoM_Load());
 
-            RMList = new ObservableCollection<Model.RM>();
 
-            foreach (DataRow dr in ds.Tables["RM"].Rows)
-            {
-                RMList.Add(new Model.RM()
-                {
-                    InputDate = (DateTime)dr["InputDate"],
-                    CusDecNo = (string)dr["CusDecNo"].ToString(),
-                    OpenDate = (DateTime)dr["OpenDate"],
-                    ReceivedDate = (DateTime)dr["ReceivedDate"],
-                    RMCode = (string)dr["RMCode"].ToString(),
-                    RMName = (string)dr["RMName"].ToString(),
-                    HSCode = (string)dr["HSCode"].ToString(),
-                    Price = (decimal)dr["Price"],
-                    ExRate = (decimal)dr["ExRate"],
-                    TaxRate = (decimal)dr["TaxRate"],
-                    Tax = (decimal)dr["Tax"],
-                    PriceOutput = (decimal)dr["PriceOutput"],
-                    Input = (decimal)dr["Input"],
-                    Output = (decimal)dr["Output"]
-                });
-            }
-        }
-        public async Task FG_Load()
-        {
-            OleDbCommand cmd = new OleDbCommand("SELECT * FROM FG", db);
-            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
-            await Task.Run(() => da.Fill(ds, "FG"));
+        //}
 
-            FGList = new ObservableCollection<Model.FG>();
+        //public async Task RM_Load()
+        //{
+        //    OleDbCommand cmd = new OleDbCommand("SELECT * FROM RM", db);
+        //    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+        //    await Task.Run(() => da.Fill(ds, "RM"));
 
-            foreach (DataRow dr in ds.Tables["FG"].Rows)
-            {
-                FGList.Add(new Model.FG()
-                {
-                    ItemCode = (string)dr["ItemCode"].ToString(),
-                    FGName = (string)dr["FGName"].ToString(),
-                    HSCode = (string)dr["HSCode"].ToString(),
-                    FGCode = (string)dr["FGCode"].ToString(),
-                    Qty = decimal.TryParse(dr["Qty"].ToString(), out decimal decResult) ? decResult : 0,
-                    Customer = (string)dr["Customer"].ToString(),
-                    PO = (string)dr["PO"].ToString(),
-                    Invoice = (string)dr["Invoice"].ToString(),
-                    Date = DateTime.TryParse(dr["Date"].ToString(), out DateTime dtResult) ? dtResult : new DateTime(),
-                    LogCode = (string)dr["LogCode"].ToString()
-                });
-            }
-        }
+        //    RMList = new ObservableCollection<Model.RM>();
 
-        private void BoM_Load()
-        {
-            OleDbCommand cmd = new OleDbCommand("SELECT * FROM BoM", db);
-            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
-            da.Fill(ds, "BoM");
+        //    foreach (DataRow dr in ds.Tables["RM"].Rows)
+        //    {
+        //        RMList.Add(new Model.RM()
+        //        {
+        //            InputDate = DateTime.TryParse(dr["InputDate"].ToString(),
+        //                    out DateTime out1) ? out1 : new DateTime(),
+        //            CusDecNo = dr["CusDecNo"].ToString(),
+        //            OpenDate = DateTime.TryParse(dr["OpenDate"].ToString(),
+        //                    out DateTime out2) ? out2 : new DateTime(),
+        //            ReceivedDate = DateTime.TryParse(dr["ReceivedDate"].ToString(),
+        //                    out DateTime out3) ? out3 : new DateTime(),
+        //            RMCode = dr["RMCode"].ToString(),
+        //            RMName = dr["RMName"].ToString(),
+        //            HSCode = dr["HSCode"].ToString(),
+        //            Price = decimal.TryParse(dr["Price"].ToString(),
+        //                    System.Globalization.NumberStyles.Any, null,
+        //                    out decimal out4) ? out4 : 0,
+        //            ExRate = decimal.TryParse(dr["ExRate"].ToString(),
+        //                    System.Globalization.NumberStyles.Any, null,
+        //                    out decimal out5) ? out5 : 0,
+        //            TaxRate = decimal.TryParse(dr["TaxRate"].ToString(),
+        //                    System.Globalization.NumberStyles.Any, null,
+        //                    out decimal out6) ? out6 : 0,
+        //            Tax = decimal.TryParse(dr["Tax"].ToString(),
+        //                    System.Globalization.NumberStyles.Any, null,
+        //                    out decimal out7) ? out7 : 0,
+        //            PriceOutput = decimal.TryParse(dr["PriceOutput"].ToString(),
+        //                    System.Globalization.NumberStyles.Any, null,
+        //                    out decimal out8) ? out8 : 0,
+        //            Input = decimal.TryParse(dr["Input"].ToString(),
+        //                    System.Globalization.NumberStyles.Any, null,
+        //                    out decimal out9) ? out9 : 0,
+        //            Output = decimal.TryParse(dr["Output"].ToString(),
+        //                    System.Globalization.NumberStyles.Any, null,
+        //                    out decimal out0) ? out0 : 0
+        //        });
+        //    }
+        //}
+        //public async Task FG_Load()
+        //{
+        //    OleDbCommand cmd = new OleDbCommand("SELECT * FROM FG", db);
+        //    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+        //    await Task.Run(() => da.Fill(ds, "FG"));
 
-            BoMList = new ObservableCollection<Model.BoM>();
+        //    FGList = new ObservableCollection<Model.FG>();
 
-            foreach(DataRow dr in ds.Tables["BoM"].Rows)
-            {
-                BoMList.Add(new Model.BoM()
-                {
-                    FGCode = (string)dr["FGCode"].ToString(),
-                    RMCode = (string)dr["RMCode"].ToString(),
-                    RMName = (string)dr["RMName"].ToString(),
-                    Unit = (string)dr["Unit"].ToString(),
-                    //BoMQty = decimal.TryParse(dr["BoM"].ToString(), out decimal Result1) ? Result1 : 0
-                    BoMQty = (decimal)dr["BoM"]
-                    //Rate = decimal.TryParse(dr["BoMQty"].ToString(), out decimal Result2) ? Result2 : 0,
-                    //BoMTotal = decimal.TryParse(dr["BoMQty"].ToString(), out decimal Result3) ? Result3 : 0,
-                    //Supplier = (string)dr["Supplier"].ToString()
-                });
-            }
+        //    foreach (DataRow dr in ds.Tables["FG"].Rows)
+        //    {
+        //        FGList.Add(new Model.FG()
+        //        {
+        //            ItemCode = (string)dr["ItemCode"].ToString(),
+        //            FGName = (string)dr["FGName"].ToString(),
+        //            HSCode = (string)dr["HSCode"].ToString(),
+        //            FGCode = (string)dr["FGCode"].ToString(),
+        //            Qty = decimal.TryParse(dr["Qty"].ToString(),
+        //                    System.Globalization.NumberStyles.Any, null,
+        //                    out decimal out1) ? out1 : 0,
+        //            Customer = (string)dr["Customer"].ToString(),
+        //            PO = (string)dr["PO"].ToString(),
+        //            Invoice = (string)dr["Invoice"].ToString(),
+        //            Date = DateTime.TryParse(dr["Date"].ToString(), out DateTime out2) ? out2 : new DateTime(),
+        //            LogCode = (string)dr["LogCode"].ToString()
+        //        });
+        //    }
+        //}
+        //private async Task BoM_Load()
+        //{
+        //    OleDbCommand cmd = new OleDbCommand("SELECT * FROM BoM", db);
+        //    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+        //    await Task.Run(() => da.Fill(ds, "BoM"));
 
-        }
+        //    BoMList = new ObservableCollection<Model.BoM>();
+
+        //    foreach(DataRow dr in ds.Tables["BoM"].Rows)
+        //    {
+        //        BoMList.Add(new Model.BoM()
+        //        {
+        //            FGCode = (string)dr["FGCode"].ToString(),
+        //            RMCode = (string)dr["RMCode"].ToString(),
+        //            RMName = (string)dr["RMName"].ToString(),
+        //            Unit = (string)dr["Unit"].ToString(),
+        //            BoMQty = decimal.TryParse(dr["BoM"].ToString(),
+        //                        System.Globalization.NumberStyles.Any, null,
+        //                        out decimal Result1) ? Result1 : 0,
+        //            Rate = decimal.TryParse(dr["Rate"].ToString(),
+        //                        System.Globalization.NumberStyles.Any, null,
+        //                        out decimal Result2) ? Result2 : 0,
+        //            BoMTotal = decimal.TryParse(dr["BoMTotal"].ToString(),
+        //                        System.Globalization.NumberStyles.Any, null,
+        //                        out decimal Result3) ? Result3 : 0,
+        //            Supplier = (string)dr["Supplier"].ToString()
+        //        });
+        //    }
+        //}
+        */
         #endregion
 
         #region Libraries
@@ -305,10 +483,8 @@ namespace MiniERP.ViewModel
 
         public RelayCommand(Predicate<T> canExecute, Action<T> execute)
         {
-            if (execute == null)
-                throw new ArgumentNullException("execute");
             _canExecute = canExecute;
-            _execute = execute;
+            _execute = execute ?? throw new ArgumentNullException("execute");
         }
 
         public bool CanExecute(object parameter)

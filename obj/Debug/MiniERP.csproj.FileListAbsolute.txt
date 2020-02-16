@@ -22,12 +22,14 @@ E:\Development\Projects\MiniERP\obj\Debug\View\MainWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\RegistrationWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\SettingsWindow.g.cs
+E:\Development\Projects\MiniERP\obj\Debug\View\TestWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\View\TransferDataWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\App.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\GeneratedInternalTypeHelper.g.cs
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP_MarkupCompile.cache
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP_MarkupCompile.lref
 E:\Development\Projects\MiniERP\obj\Debug\App.baml
+E:\Development\Projects\MiniERP\obj\Debug\ResourceXAML\MainResource-EN - Backup.baml
 E:\Development\Projects\MiniERP\obj\Debug\ResourceXAML\MainResource-FR.baml
 E:\Development\Projects\MiniERP\obj\Debug\ResourceXAML\MainResource-VN.baml
 E:\Development\Projects\MiniERP\obj\Debug\ResourceXAML\MainResource-EN.baml
@@ -41,6 +43,7 @@ E:\Development\Projects\MiniERP\obj\Debug\View\MainWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\RawMaterialWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\RegistrationWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\SettingsWindow.baml
+E:\Development\Projects\MiniERP\obj\Debug\View\TestWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\View\TransferDataWindow.baml
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.g.resources
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.Properties.Resources.resources
@@ -48,6 +51,4 @@ E:\Development\Projects\MiniERP\obj\Debug\MiniERP.csproj.GenerateResource.cache
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.csproj.CopyComplete
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.exe
 E:\Development\Projects\MiniERP\obj\Debug\MiniERP.pdb
-E:\Development\Projects\MiniERP\obj\Debug\ResourceXAML\MainResource-EN - Backup.baml
-E:\Development\Projects\MiniERP\obj\Debug\View\TestWindow.g.cs
-E:\Development\Projects\MiniERP\obj\Debug\View\TestWindow.baml
+E:\Development\Projects\MiniERP\obj\Debug\MiniERP.csprojAssemblyReference.cache

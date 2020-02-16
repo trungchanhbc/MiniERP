@@ -21,7 +21,7 @@
         DataContext="{StaticResource TestVM}"
         
         Name="TestWin"
-        Title="TestWindow" Height="450" Width="800">
+        Title="TestWindow" Height="800" Width="1200">
     
     <!-- Loaded Event -->
     <i:Interaction.Triggers>
@@ -32,9 +32,15 @@
     </i:Interaction.Triggers>
     
     <Grid>
-        <ListView x:Name="lsvOldData" ItemsSource="{Binding BoMList}">
+        <ListView x:Name="lsvOldData" ItemsSource="{Binding RawMaterialInfos}">
             <ListView.View>
                 <GridView>
+                    <!-- Raw Material Info -->
+                    <GridViewColumn Header="RM Code" DisplayMemberBinding="{Binding Path=Code}"/>
+                    <GridViewColumn Header="RM Name" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Header="HS Code" DisplayMemberBinding="{Binding Path=HSCode}" />
+                    <GridViewColumn Header="Unit" DisplayMemberBinding="{Binding Path=UnitID}" />
+                    
                     <!-- RM List -->
                     <!--<GridViewColumn Header="InputDate" DisplayMemberBinding="{Binding Path=InputDate, StringFormat='dd/MM/yyyy'}"/>
                     <GridViewColumn Header="Customs Declaration No." DisplayMemberBinding="{Binding Path=CusDecNo}" />
@@ -59,14 +65,14 @@
                     <GridViewColumn Header="Log Code" DisplayMemberBinding="{Binding Path=LogCode}" />-->
                     
                     <!-- BoM List -->
-                    <GridViewColumn Header="FG Code" DisplayMemberBinding="{Binding Path=FGCode}" />
+                    <!--<GridViewColumn Header="FG Code" DisplayMemberBinding="{Binding Path=FGCode}" />
                     <GridViewColumn Header="RM Code" DisplayMemberBinding="{Binding Path=RMCode}" />
                     <GridViewColumn Header="RM Name" DisplayMemberBinding="{Binding Path=RMName}" />
                     <GridViewColumn Header="Unit" DisplayMemberBinding="{Binding Path=Unit}" />
                     <GridViewColumn Header="BoM Qty" DisplayMemberBinding="{Binding Path=BoMQty}" />
                     <GridViewColumn Header="Rate" DisplayMemberBinding="{Binding Path=Rate}" />
                     <GridViewColumn Header="BoM Total" DisplayMemberBinding="{Binding Path=BoMTotal}" />
-                    <GridViewColumn Header="Supplier" DisplayMemberBinding="{Binding Path=Supplier}" />
+                    <GridViewColumn Header="Supplier" DisplayMemberBinding="{Binding Path=Supplier}" />-->
                 </GridView>
             </ListView.View>
         </ListView>

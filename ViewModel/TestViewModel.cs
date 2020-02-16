@@ -27,21 +27,10 @@ namespace MiniERP.ViewModel
         {
             TestLoadedCmd = new RelayCommand<ListView>((p) => { return true; }, (p) => 
             {
+                TransferData();
                 //Task task = Task.Run(() => oldDatabase_Get());
-                oldDatabase_Get();
+                //oldDatabase_Get();
             });
         }
-
-        class DBConnection
-        {
-            string DBFile { get; set; }
-            string Pwd { get; set; }
-            DBConnection()
-            {
-                DBFile = null;
-                Pwd = null;
-            }
-        }
-
     }
 }

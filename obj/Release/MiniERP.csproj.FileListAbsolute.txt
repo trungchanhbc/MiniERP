@@ -48,7 +48,7 @@ E:\Development\Projects\MiniERP\obj\Release\MiniERP.csproj.GenerateResource.cach
 E:\Development\Projects\MiniERP\obj\Release\MiniERP.csproj.CopyComplete
 E:\Development\Projects\MiniERP\obj\Release\MiniERP.exe
 E:\Development\Projects\MiniERP\obj\Release\MiniERP.pdb
-E:\Development\Projects\MiniERP\obj\Release\MiniERP.csprojAssemblyReference.cache
 E:\Development\Projects\MiniERP\obj\Release\View\TestWindow.g.cs
 E:\Development\Projects\MiniERP\obj\Release\ResourceXAML\MainResource-EN - Backup.baml
 E:\Development\Projects\MiniERP\obj\Release\View\TestWindow.baml
+E:\Development\Projects\MiniERP\obj\Release\MiniERP.csprojAssemblyReference.cache
